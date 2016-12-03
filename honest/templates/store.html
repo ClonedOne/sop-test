@@ -9,7 +9,12 @@
 		This is a the store subdomain for the website.
 	</div>
 	<script type="text/javascript" src='static/cookieSetter.js'></script>
-	<script type="text/javascript" src='http://attacker.com:5000/luringservice'></script>
+	<script type="text/javascript">
+		function myFunction (someData) {
+			console.log(someData);
+		}
+	</script>
+	<script type="text/javascript" src='http://attacker.com:5000/luringservice?callback=myFunction'></script>
 	
 </body>
 </html>
