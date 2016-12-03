@@ -17,3 +17,5 @@ ifrm.setAttribute("src", requrl);
 ifrm.style.width = "640px";
 ifrm.style.height = "480px";
 document.body.appendChild(ifrm);
+
+windowReference.close();
