@@ -1,6 +1,6 @@
 # sop-test
 
-This repository contains some basic code written in order to provide a working example of the Same Origin Policy. The code was developed using [Flask](http://flask.pocoo.org/) as web server.
+This repository contains some basic code written in order to provide a working example of the Same Origin Policy. The code was developed using [Flask](http://flask.pocoo.org/) as web server. This code is merely demonstrative of the security features of web browsers and is not intended to be used in any way outside of the user own local network.
 
 To run a server with Flask it is sufficient to install it with `pip`, set the desired [name].py file as flask application and execute it. The following commands in the chosen server subdirectory will work on Linux (tested on Arch and Ubuntu):
 
@@ -23,4 +23,8 @@ Accessing blog.local.com will cause it to open a new tab in the browser loading 
 
 ####Session Hijacking Example
 
+The second example is aimed at showing the possible security issues resulting from attempts to bypass the Same Origin Policy. This example requires both web servers to be up and running. In this case the honest website `store.local.com:5000` uses JSONP to access a desired service at `attacker.com:5000/luringservice`.
 
+The problem with JSONP is that the client page relies completely on the good intentions of the server. In this particular scenario the server is either malicious or compromised and the returned JavaScript instead of being a wrapped JSON structure, is a cookie stealing script.
+
+The session hijacking script will open a new window with the store page as origin to induce the browser to send cookies and then grabs them form the `window.document` reference it posses. To finally exfiltrate the cookies bypassing SOP restrictions it will create an iframe having as source a fixed route on the malicious server and passing as parameter of the GET method the stolen cookie. The cookie itself is then logged on a file by the attacker server.
